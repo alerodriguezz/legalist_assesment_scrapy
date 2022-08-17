@@ -2,8 +2,13 @@ import scrapy
 
 class CourtScraper(scrapy.Spider):
   name = 'cases'
-  start_urls = ['https://courtconnect.courts.delaware.gov/cc/cconnect/ck_public_qry_cpty.cp_personcase_srch_details?backto=P&soundex_ind=&partial_ind=checked&last_name=a&last_name=a&first_name=&middle_name=&begin_date=08-AUG-2022&end_date=09-AUG-2022&case_type=ALL&id_code=&PageNo=1']
+
   
+  abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  url= "https://courtconnect.courts.delaware.gov/cc/cconnect/ck_public_qry_cpty.cp_personcase_srch_details?backto=P&soundex_ind=&partial_ind=checked&last_name=a&last_name=a&first_name=&middle_name=&begin_date=08-AUG-2022&end_date=09-AUG-2022&case_type=ALL&id_code=&PageNo=1"
+  start_urls = ["https://courtconnect.courts.delaware.gov/cc/cconnect/ck_public_qry_cpty.cp_personcase_srch_details?backto=P&soundex_ind=&partial_ind=checked&last_name=%s&last_name=%s&first_name=&middle_name=&begin_date=08-AUG-2022&end_date=09-AUG-2022&case_type=ALL&id_code=&PageNo=1" % (x,x) for x in abc]
+
+
 
   def parse(self,response):
     rows = response.xpath('/html/body/font[1]/table[2]/tr')
