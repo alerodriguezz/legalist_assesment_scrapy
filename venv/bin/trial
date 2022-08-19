@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/alex/Documents/programming/legalist_assesment_scrapy/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
