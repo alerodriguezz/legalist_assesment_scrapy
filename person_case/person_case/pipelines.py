@@ -17,10 +17,14 @@ class PersonCasePipeline:
     self.cur.execute("""CREATE TABLE IF NOT EXISTS cases(
     id BLOB PRIMARY KEY,
     name TEXT,
-    address TEXT
+    address TEXT,
+    party_type TEXT,
+    party_end_date TEXT,
+    filing_date TEXT,
+    case_status TEXT
     )""")
     
   def process_item(self, item, spider):
-    self.cur.execute("""INSERT OR IGNORE INTO cases1 VALUES(?,?,?)""",(item['id'],item['name'],item['address']))
+    self.cur.execute("""INSERT OR IGNORE INTO cases VALUES(?,?,?,?,?,?,?)""",(item['id'],item['name'],item['address'],item['party type'],item['party end date'],item['filing date'],item['case status']))
     self.con.commit()
     return item
