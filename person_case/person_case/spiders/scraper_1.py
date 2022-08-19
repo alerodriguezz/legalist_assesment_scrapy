@@ -2,11 +2,10 @@ import scrapy
 
 class CourtScraper(scrapy.Spider):
   name = 'cases'
-
-  
   abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-  url= "https://courtconnect.courts.delaware.gov/cc/cconnect/ck_public_qry_cpty.cp_personcase_srch_details?backto=P&soundex_ind=&partial_ind=checked&last_name=a&last_name=a&first_name=&middle_name=&begin_date=08-AUG-2022&end_date=09-AUG-2022&case_type=ALL&id_code=&PageNo=1"
-  start_urls = ["https://courtconnect.courts.delaware.gov/cc/cconnect/ck_public_qry_cpty.cp_personcase_srch_details?backto=P&soundex_ind=&partial_ind=checked&last_name=%s&last_name=%s&first_name=&middle_name=&begin_date=08-AUG-2022&end_date=09-AUG-2022&case_type=ALL&id_code=&PageNo=1" % (x,x) for x in abc]
+  #list comprehension feeds urls of cases from a to 
+  #fill in start and end variables with desired start and end dates respectively. NOTE: dates MUST be in DD-MON-YYYY format as shown in the sample dates I have put
+  start_urls = ["https://courtconnect.courts.delaware.gov/cc/cconnect/ck_public_qry_cpty.cp_personcase_srch_details?backto=P&soundex_ind=&partial_ind=checked&last_name={i}&last_name={i}&first_name=&middle_name=&begin_date={start}&end_date={end}&case_type=ALL&id_code=&PageNo=1".format(i=x,start="08-AUG-2022",end="09-AUG-2022") for x in abc]
 
 
 

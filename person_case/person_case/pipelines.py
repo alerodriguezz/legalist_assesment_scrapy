@@ -6,8 +6,21 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+import sqlite3
 
 class PersonCasePipeline:
-    def process_item(self, item, spider):
-        return item
+  def __init__(self):
+    self.con = sqlite3.connect('myData_1.db')
+    self.cur = self.con.cursor()
+    self.create_table()
+  def create_table(self):
+    self.cur.execute("""CREATE TABLE IF NOT EXISTS cases(
+    id BLOB PRIMARY KEY,
+    name TEXT,
+    address TEXT
+    )""")
+    
+  def process_item(self, item, spider):
+    self.cur.execute("""INSERT OR IGNORE INTO cases1 VALUES(?,?,?)""",(item['id'],item['name'],item['address']))
+    self.con.commit()
+    return item
