@@ -34,6 +34,12 @@ once you are in, run the command
 scrapy crawl cases
 ```
 
+use this command to see a visual of the data that was pulled 
+```
+scrapy crawl cases -O sample.json
+```
+
 ## architecture
 
 I kept things minimal for this scraper and used only **scrapy** for the entire piepline. scrapy retrieved, parsed, and relayed the information to the **sqlite3** file myData_1.db that is output once the program finishes running.
+
